@@ -20,6 +20,24 @@ export const notificationsAtom = atom({
     default: 0
 });
 
+export const postsAtom = atom({
+    key: 'postsAtom',
+    default: [
+        {
+            title: "Post 1",
+            description: "Description 1"
+        },
+        {
+            title: "Post 2",
+            description: "Description 2"
+        },
+        {
+            title: "Post 3",
+            description: "Description 3"
+        }
+    ]
+});
+
 export const meSelector = selector({
     key: 'meSelector',
     get: ({get}) => {
@@ -28,6 +46,6 @@ export const meSelector = selector({
         const messages = get(messagesAtom);
         const notifications = get(notificationsAtom);
 
-        return [network,jobs, messages,notifications];
+        return parseInt(network)+parseInt(jobs)+parseInt(messages)+parseInt(notifications);
     }
 });
