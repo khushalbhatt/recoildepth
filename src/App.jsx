@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
 import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil'
-import { meSelector, networkAtom,jobsAtom,messagesAtom,notificationsAtom,postsAtom } from './atoms'
+import { meSelector, networkAtom,jobsAtom,messagesAtom,notificationsAtom,postsAtom,atomfamily1} from './atoms'
 
 function App() {
   return (
@@ -41,11 +41,35 @@ function UsingAtoms(){
       <button>Messages({messages})</button>
       <button>Notifications({notifications})</button>
       <button>Me({me})</button>
+      <br></br>
+      <POSTS id={1}></POSTS>
+      <POSTS id={1}></POSTS>
+      <POSTS id={1}></POSTS>
+
+
+      <br></br>
       <div>
         {posts.map((post,index) => {
-          return <div key={index}>{post.title}</div>
+          return <Posts key={index} id={post.id} title={post.title}></Posts>
         })}
       </div>
+    </>
+  )
+}
+
+function POSTS({id}){
+  const currentTodo = useRecoilValue(atomfamily1(id));
+  return (
+    <>
+      <div>{currentTodo.title}</div>
+    </>
+  )
+}
+
+function Posts(props){
+  return (
+    <>
+        <div> {props.id} {props.title}</div>
     </>
   )
 }

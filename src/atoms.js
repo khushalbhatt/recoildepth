@@ -1,4 +1,4 @@
-import {atom, selector} from 'recoil';
+import {atom, atomFamily, selector} from 'recoil';
 import axios from 'axios'
 
 
@@ -44,3 +44,16 @@ export const meSelector = selector({
         return parseInt(network)+parseInt(jobs)+parseInt(messages)+parseInt(notifications);
     }
 });
+
+export const atomfamily1 = atomFamily({
+    key: 'atomfamily',
+    default: (id)=>{
+        return selector({
+            key: 'atomfamily/Default',
+            get: async () => {
+                const res = await axios(`https://jsonplaceholder.typicode.com/posts/${id}`);
+                return res.data;
+    }
+})
+}
+})
