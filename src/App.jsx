@@ -24,14 +24,14 @@ function UsingAtoms(){
   const me = useRecoilValue(meSelector);
   const [posts,setPosts] = useRecoilState(postsAtom);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-      console.log(res.data);
-      setPosts(res.data);
-    };
-    fetchPosts();
-  },[]);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  //     console.log(res.data);
+  //     setPosts(res.data);
+  //   };
+  //   fetchPosts();
+  // },[]);
 
   return (
     <>

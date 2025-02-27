@@ -1,4 +1,6 @@
 import {atom, selector} from 'recoil';
+import axios from 'axios'
+
 
 export const networkAtom = atom({
     key: 'networkAtom',
@@ -22,20 +24,13 @@ export const notificationsAtom = atom({
 
 export const postsAtom = atom({
     key: 'postsAtom',
-    default: [
-        {
-            title: "Post 1",
-            description: "Description 1"
-        },
-        {
-            title: "Post 2",
-            description: "Description 2"
-        },
-        {
-            title: "Post 3",
-            description: "Description 3"
+    default: selector({
+        key: 'postsAtom/Default',
+        get: async () => {
+            const res = await axios("https://jsonplaceholder.typicode.com/posts");
+            return res.data;
         }
-    ]
+    })
 });
 
 export const meSelector = selector({
